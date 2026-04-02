@@ -150,8 +150,6 @@ def train(local_rank: int, global_rank: int, world_size: int,
                 itr = e * len(train_dataloader) + idx
                 writer.add_scalar('Loss/train', loss.item(), itr)
 
-            return 
-
         # Validation epoch
         # Same as training epoch just no backprop
         model.eval()
