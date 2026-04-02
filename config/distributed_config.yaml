@@ -1,0 +1,8 @@
+model_name: 'resnet101.a1_in1k'
+log_dir: runs/resnet101/
+
+data: 
+  root: '/data2/marci/dlewis37/chexpert'
+
+optimization: 
+  num_epochs: 1
