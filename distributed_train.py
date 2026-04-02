@@ -23,7 +23,9 @@ def train(local_rank: int, global_rank: int, world_size: int,
     model_name = params['model_name']
     log_dir = params['log_dir']
     data_root = params['data']['root']
+    batch_size = params['data']['batch_size']
     num_epochs = params['optimization']['num_epochs']
+    learning_rate = params['optimization']['learning_rate']
 
     # Setup Tensorboard logging 
     if is_logger:
@@ -91,14 +93,14 @@ def train(local_rank: int, global_rank: int, world_size: int,
 
     train_dataloader = torch.utils.data.DataLoader(
         dataset=train_dataset,
-        batch_size=64,
+        batch_size=batch_size,
         sampler=sampler,
         num_workers=2,
     )
 
     val_dataloader = torch.utils.data.DataLoader(
         dataset=val_dataset, 
-        batch_size=64,
+        batch_size=batch_size,
         num_workers=2,
         shuffle=False
     )  
@@ -106,7 +108,7 @@ def train(local_rank: int, global_rank: int, world_size: int,
     # Initialize optimizer 
     optimizer = torch.optim.Adam(
         model.parameters(),
-        lr=1e-4
+        lr=learning_rate
     )
 
     # Initialize loss function  
