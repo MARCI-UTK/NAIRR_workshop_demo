@@ -7,9 +7,9 @@ log_dir: runs/resnet101/
 # Data related parameters 
 data: 
   root: '/data2/marci/dlewis37/chexpert'
-  batch_size: 64
+  batch_size: 16
 
 # Optimization settings 
 optimization: 
-  num_epochs: 1
+  num_epochs: 3
   learning_rate: 1e-4 
