@@ -9,7 +9,7 @@ Need to ensure that everyone can access the data and virtual environment.
 - Data is in /work/hdd/[ALLOCATION_ID]/lewis1
 - Virtual env. is in /work/hdd/[ALLOCATION_ID]/lewis1
 
-Based on my testing, an epoch of CheXpert training on MARCI takes ~1 hr. This is with the CheXpert data on the 
+Based on my testing, an epoch of CheXpert training on MARCI takes ~50m. This is with the CheXpert data on the 
 slow HDD that we have on MARCI. Since we are supposed to put our data in the /work/hdd/ drive on Delta, I think 
 we may experience similar data loading bottlenecks. As of this update (4/2 AM), I have a run of this code 
 submitted on Delta to gauge the runtime there, but the job has not started running yet. 
