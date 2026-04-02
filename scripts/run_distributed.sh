@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --account=bfep-delta-gpu      # <- This is our ACCESS account 
+#SBATCH --account=[ALLOCATION ACCT]   # <- This is our ACCESS account 
 #SBATCH --partition=gpuA40x4          # <- This is the type of node we would like to use 
 #SBATCH --job-name=chexpert_train     # <- The name of our job 
 #SBATCH --nodes=1                     # <- The number of nodes we want 
