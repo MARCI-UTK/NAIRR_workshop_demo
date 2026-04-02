@@ -1,8 +1,15 @@
+# timm model being used 
 model_name: 'resnet101.a1_in1k'
+
+# Directory where Tensorboard output goes 
 log_dir: runs/resnet101/
 
+# Data related parameters 
 data: 
   root: '/data2/marci/dlewis37/chexpert'
+  batch_size: 64
 
+# Optimization settings 
 optimization: 
   num_epochs: 1
+  learning_rate: 1e-4 

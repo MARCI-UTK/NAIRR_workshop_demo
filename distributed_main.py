@@ -5,6 +5,10 @@ import argparse
 
 import distributed_train 
 
+"""
+Start local GPU process 
+Return the GPU ID for this process  
+"""
 def setup_ddp() -> None:
     local_rank = int(os.environ["LOCAL_RANK"])
     torch.cuda.set_device(local_rank)
@@ -16,11 +20,19 @@ def setup_ddp() -> None:
 
     return local_rank
 
+"""
+Clean up GPU process after training 
+"""
 def cleanup_ddp() -> None:
     torch.distributed.destroy_process_group()
 
     return 
 
+
+"""
+Load configuration file, setup distributed environment, 
+and start model training 
+"""
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--fname", type=str, required=True)
