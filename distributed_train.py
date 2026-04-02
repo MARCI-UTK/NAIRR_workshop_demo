@@ -63,7 +63,8 @@ def train(local_rank: int, global_rank: int, world_size: int,
 
     val_transform = v2.Compose([
         v2.Resize((288, 288)),
-        v2.ToTensor(),
+        v2.ToImage(),
+        v2.ToDtype(torch.float32, scale=True),
         v2.Normalize(mean=[0.53305], std=[0.03491])
     ])
 
