@@ -95,14 +95,16 @@ def train(local_rank: int, global_rank: int, world_size: int,
         dataset=train_dataset,
         batch_size=batch_size,
         sampler=sampler,
-        num_workers=2,
+        num_workers=4,
+        pin_memory=True,
     )
 
     val_dataloader = torch.utils.data.DataLoader(
         dataset=val_dataset, 
         batch_size=batch_size,
-        num_workers=2,
-        shuffle=False
+        num_workers=4,
+        shuffle=False,
+        pin_memory=True,
     )  
 
     # Initialize optimizer 
