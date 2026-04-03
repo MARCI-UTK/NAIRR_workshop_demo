@@ -105,6 +105,6 @@ srun torchrun \
     --master_port=$MASTER_PORT \
     distributed_train.py --fname config/distributed_config.yaml
 ```
-After specifying the SLURM configuration, jobs are submitted by running `sbatch \[slurm_file_name\]`. 
+After specifying the SLURM configuration, jobs are submitted by running `sbatch [slurm_file_name]`. This command submits the job to Delta's SLURM queue and it will begin running once the specified resources become available. The status of the job can be checked by running `squeue -u $USER` which will output the ID of your job submisison along with its status (in queue, running, etc.). To cancel a job that has been submitted to the queue, run the previous `squeue` command to get the ID of the job then run `scancel [job_id]`. 
 
 The 'currency' used to access Delta's compute resources are credits allocated through the [NSF's ACCESS program](https://access-ci.org/). These credits can be exchanged for GPU hours on Delta. GPU hours are the unit of time used to measure the amount of Delta resources used. GPU hours are the number of hours a job on Delta runs for multiplied by the number of GPUs used by the job. 1 Delta GPU hour costs (66.67 * `charge_factor`) ACCESS credits. The `charge_factor` value depends on the type of node being used by a job. Some types of nodes on Delta are more powerful than others, thus they cost more per GPU hour. Our training pipeline uses the `gpuA40x4` nodes which have a `charge_factor of 0.5. These nodes each have 4 NVIDIA A40 GPUs. 
