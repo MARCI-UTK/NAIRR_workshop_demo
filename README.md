@@ -39,4 +39,4 @@ Because of this infrastructure, a model which might take weeks to train on a sin
 
 ## Delta HPC Overview
 
-Delta is a HPC system developed and managed by Hewlett Packard Enterprise (HPE) and the National Center for Supercomputing Applications (NCSA) at the University of Illinois Urbana-Champaign. The [Delta user guide](https://docs.ncsa.illinois.edu/systems/delta/en/latest/index.html) provides a fantastic overview of this system.
+Delta is a HPC system developed and managed by Hewlett Packard Enterprise (HPE) and the National Center for Supercomputing Applications (NCSA) at the University of Illinois Urbana-Champaign. The [Delta user guide](https://docs.ncsa.illinois.edu/systems/delta/en/latest/index.html) provides a fantastic overview of this system. NCSA also offers plentiful resrouces for learning about HPC systems [here](https://learn.ncsa.illinois.edu/). 
