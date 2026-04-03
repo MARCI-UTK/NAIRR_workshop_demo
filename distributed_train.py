@@ -23,9 +23,9 @@ def train(local_rank: int, global_rank: int, world_size: int,
     model_name = params['model_name']
     log_dir = params['log_dir']
     data_root = params['data']['root']
-    batch_size = params['data']['batch_size']
-    num_epochs = params['optimization']['num_epochs']
-    learning_rate = params['optimization']['learning_rate']
+    batch_size = int(params['data']['batch_size'])
+    num_epochs = int(params['optimization']['num_epochs'])
+    learning_rate = float(params['optimization']['learning_rate'])
 
     # Setup Tensorboard logging 
     if is_logger:

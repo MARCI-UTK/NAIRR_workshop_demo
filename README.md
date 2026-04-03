@@ -1,4 +1,4 @@
-# NAIRR Workshop Demo
+# NAIRR ACCESS-DELTA CheXPert Workshop Demo
 
 These files run a training of ResNet-101 on the CheXpert dataset in a HPC environment. Once logged into Delta, simply run 
 `sh scripts/run_distributed.sh` to start the model training. Users will need to specify their own Delta/ACCESS account name  
