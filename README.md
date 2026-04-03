@@ -68,4 +68,32 @@ Because of this infrastructure, a model which might take weeks to train on a sin
 
 Delta is a HPC system developed and managed by Hewlett Packard Enterprise (HPE) and the National Center for Supercomputing Applications (NCSA) at the University of Illinois Urbana-Champaign. The [Delta user guide](https://docs.ncsa.illinois.edu/systems/delta/en/latest/index.html) provides a fantastic overview of this system. NCSA also offers plentiful resrouces for learning about HPC systems [here](https://learn.ncsa.illinois.edu/). 
 
-To use  
+To train a model using PyTorch code on Delta, a SLURM configuration file very similar to the example above is used. An example of a SLURM configuration file that would be used on Delta is given below. The SLURM configuration for our example is `scripts/run_distributed.sh`. 
+
+
+```bash
+#!/bin/bash
+#SBATCH --job-name=slurm_example      # <- The name of our job 
+#SBATCH --nodes=1                     # <- The number of nodes we want 
+#SBATCH --ntasks-per-node=1           # <- We want to run 1 process per node (PyTorch controls the subprocesses on each node)
+#SBATCH --gpus-per-node=4             # <- How many GPUs we want per node 
+#SBATCH --cpus-per-task=32            # <- How many CPUs we want per node (DataLoader num_workers * gpus_per_node is rule of thumb)
+#SBATCH --mem=64G                     # <- How much RAM per node 
+#SBATCH --time=1:00:00                # <- How long our process can run for (1 hr in this example)
+#SBATCH --output=logs/%j.out          # <- Where standard output goes 
+#SBATCH --error=logs/%j.err           # <- Where error output goes 
+
+# Determine the IP of the control node for SLURM process and assign port 
+# for the master node of the job 
+MASTER_ADDR=$(scontrol show hostnames "$SLURM_JOB_NODELIST" | head -n 1)
+MASTER_PORT=12345
+
+# Run distributed training 
+srun torchrun \
+    --nproc_per_node=4 \              #  <- Numebr of torch proccess per node (less than or equal to the number of GPUs on node)
+    --nnodes=$SLURM_NNODES \
+    --node_rank=$SLURM_NODEID \
+    --master_addr=$MASTER_ADDR \
+    --master_port=$MASTER_PORT \
+    train.py --fname config.yaml
+```
