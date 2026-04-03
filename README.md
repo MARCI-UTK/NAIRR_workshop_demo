@@ -73,7 +73,7 @@ To train a model using PyTorch code on Delta, a SLURM configuration file very si
 
 ```bash
 #!/bin/bash
-#SBATCH --account=[ALLOCATION ACCT]   # <- Specify your ACCESS account 
+#SBATCH --account=[ALLOCATION_ID]     # <- Specify your ACCESS allocation ID 
 #SBATCH --partition=gpuA40x4          # <- Specify the type of node we would like to use 
 #SBATCH --job-name=chexpert_train     # <- The name of our job 
 #SBATCH --nodes=1                     # <- The number of nodes we want 
@@ -105,6 +105,15 @@ srun torchrun \
     --master_port=$MASTER_PORT \
     distributed_train.py --fname config/distributed_config.yaml
 ```
-After specifying the SLURM configuration, jobs are submitted by running `sbatch [slurm_file_name]`. This command submits the job to Delta's SLURM queue and it will begin running once the specified resources become available. The status of the job can be checked by running `squeue -u $USER` which will output the ID of your job submisison along with its status (in queue, running, etc.). To cancel a job that has been submitted to the queue, run the previous `squeue` command to get the ID of the job then run `scancel [job_id]`. 
+After specifying the SLURM configuration, jobs are submitted by running `sbatch [slurm_file_name]`. This command submits the job to Delta's SLURM queue and it will begin running once the specified resources become available. The status of the job can be checked by running `squeue -u $USER` which will output the ID of your job submisison along with its status (in queue, running, etc.). To cancel a job that has been submitted to the queue, run the previous `squeue` command to get the ID of the job then run `scancel [job_id]`. Advanced details about job management on Delta are available [here](https://docs.ncsa.illinois.edu/systems/delta/en/latest/user_guide/running_jobs.html). 
 
-The 'currency' used to access Delta's compute resources are credits allocated through the [NSF's ACCESS program](https://access-ci.org/). These credits can be exchanged for GPU hours on Delta. GPU hours are the unit of time used to measure the amount of Delta resources used. GPU hours are the number of hours a job on Delta runs for multiplied by the number of GPUs used by the job. 1 Delta GPU hour costs (66.67 * `charge_factor`) ACCESS credits. The `charge_factor` value depends on the type of node being used by a job. Some types of nodes on Delta are more powerful than others, thus they cost more per GPU hour. Our training pipeline uses the `gpuA40x4` nodes which have a `charge_factor of 0.5. These nodes each have 4 NVIDIA A40 GPUs. 
+The 'currency' used to access Delta's compute resources are credits allocated through the [NSF's ACCESS program](https://access-ci.org/). These credits can be exchanged for GPU hours on Delta. GPU hours are the unit of time used to measure the amount of Delta resources used. GPU hours are the number of hours a job on Delta runs for multiplied by the number of GPUs used by the job. 1 Delta GPU hour costs (66.67 * `charge_factor`) ACCESS credits. The `charge_factor` value depends on the type of node being used by a job. Some types of nodes on Delta are more powerful than others, thus they cost more per GPU hour. Our training pipeline uses the `gpuA40x4` nodes which have a `charge_factor of 0.5. These nodes each have 4 NVIDIA A40 GPUs. Up-to-date information about the types of nodes offered on Delta are also listed [here](https://docs.ncsa.illinois.edu/systems/delta/en/latest/user_guide/running_jobs.html). 
+
+Data on Delta is stored in one of 3 places. 
+- `/projects/[ALLOCATION_ID]/[DELTA_USERNAME]/`
+- `/work/nvme/[ALLOCATION_ID]/[DELTA_USERNAME]/`
+- `work/hdd/[ALLOCATION_ID]/[DELTA_USERNAME]/`
+
+The `projects` location is useful for things that are shared between users on a project such as the Python packages needed to run jobs. This is where the virtual environment used for our training pipeline is stored. The `nvme` and `hdd` locations are both used to store the data used by jobs. The `nvme` location uses an NVMe drive which is very performant, but expensive, while the `hdd` location uses a standard disk drive that is slower, but is very cheap for large datasets. The `hdd` location is used to store the CheXpert dataset for our training pipeline. Further details about Deltas's storage resources can be found [here](https://docs.ncsa.illinois.edu/systems/delta/en/latest/user_guide/data_mgmt.html). 
+
+Delta supports standard Python package management software (virtual environments and [Anaconda](https://www.anaconda.com/download)). We use virtual environments for this training pipeline. Once logged into Delta, run `module load python` to load the most up-to-date Python version on Delta. The current default without running this is Python 3.9 which will cause compatability issues with packages.
