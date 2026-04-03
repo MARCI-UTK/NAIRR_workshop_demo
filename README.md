@@ -35,7 +35,7 @@ Because these resources are shared among many users simultaneously, HPC systems 
 
 When training AI models across GPUs machines simultaneously, known as distributed training, the workload is split across all available GPUs in a coordinated way. Each GPU processes a different subset of the training data, and the results are synchronized across all GPUs after each training step. This coordination is handled by a communication framework called `NCCL`, which is optimized for fast data transfer between GPUs both within a single machine and across multiple machines connected by a high-speed network. From the user's perspective, this process is largely automated. In our model training pipeline, a tool called `torchrun` is responsible for launching the correct number of coordinated training processes across all machines, with SLURM ensuring those machines are reserved and available when the job starts. The following is an example of a SLURM configuration file: 
 
-`
+```bash
 #!/bin/bash
 #SBATCH --job-name=slurm_example      # <- The name of our job 
 #SBATCH --nodes=1                     # <- The number of nodes we want 
@@ -60,7 +60,7 @@ srun torchrun \
     --master_addr=$MASTER_ADDR \
     --master_port=$MASTER_PORT \
     distributed_train.py --fname config/distributed_config.yaml
-`
+```
 
 Because of this infrastructure, a model which might take weeks to train on a single GPU can be trained in hours on a modern HPC cluster. For medical AI systems such as automated chest X-ray interpretation, this scalability is critical. These models are typically trained on hundreds of thousands of images, and meaningful results require many passes through the entire dataset. The combination of SLURM for resource management and distributed training frameworks for parallelization have enabled researchers to develop and test models at an incredible pace.
 
