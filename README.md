@@ -54,12 +54,12 @@ MASTER_PORT=12345
 
 # Run distributed training 
 srun torchrun \
-    --nproc_per_node=4 \
+    --nproc_per_node=4 \              #  <- Numebr of torch proccess per node (less than or equal to the number of GPUs on node)
     --nnodes=$SLURM_NNODES \
     --node_rank=$SLURM_NODEID \
     --master_addr=$MASTER_ADDR \
     --master_port=$MASTER_PORT \
-    distributed_train.py --fname config/distributed_config.yaml
+    train.py --fname config.yaml
 ```
 
 Because of this infrastructure, a model which might take weeks to train on a single GPU can be trained in hours on a modern HPC cluster. For medical AI systems such as automated chest X-ray interpretation, this scalability is critical. These models are typically trained on hundreds of thousands of images, and meaningful results require many passes through the entire dataset. The combination of SLURM for resource management and distributed training frameworks for parallelization have enabled researchers to develop and test models at an incredible pace.
