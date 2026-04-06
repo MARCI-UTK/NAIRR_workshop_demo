@@ -4,8 +4,8 @@ import timm
 import yaml
 import torch
 import argparse
-from torch.utils import tensorboard
 from torchvision.transforms import v2 
+from torch.utils.tensorboard import SummaryWriter 
 from torch.nn.parallel import DistributedDataParallel as DDP
 
 import chexpert_dataset
@@ -30,7 +30,7 @@ def train(local_rank: int, global_rank: int, world_size: int,
     # Setup Tensorboard logging 
     if is_logger:
         os.makedirs(log_dir, exist_ok=True)
-        writer = tensorboard.SummaryWriter(log_dir=log_dir)
+        writer = SummaryWriter(log_dir=log_dir)
 
     """
     Initialize and setup model 
@@ -60,14 +60,14 @@ def train(local_rank: int, global_rank: int, world_size: int,
         v2.RandomHorizontalFlip(),
         v2.ToImage(),
         v2.ToDtype(torch.float32, scale=True),
-        v2.Normalize(mean=[0.53305], std=[0.03491])
+        v2.Normalize(mean=[0.5029], std=[0.289])
     ])
 
     val_transform = v2.Compose([
         v2.Resize((288, 288)),
         v2.ToImage(),
         v2.ToDtype(torch.float32, scale=True),
-        v2.Normalize(mean=[0.53305], std=[0.03491])
+        v2.Normalize(mean=[0.5029], std=[0.289])
     ])
 
     train_dataset = chexpert_dataset.CheXpertDataset(
@@ -145,7 +145,7 @@ def train(local_rank: int, global_rank: int, world_size: int,
 
             # Update progress bar and add loss to Tensorboard 
             if is_logger: 
-                pbar.update(1)
+                pbar.set_postfix(loss=loss.item())
 
                 itr = e * len(train_dataloader) + idx
                 writer.add_scalar('Loss/train', loss.item(), itr)
@@ -154,16 +154,19 @@ def train(local_rank: int, global_rank: int, world_size: int,
         # Same as training epoch just no backprop
         model.eval()
         pbar = tqdm.tqdm(val_dataloader) if is_logger else val_dataloader
-        for idx, (img, lbl) in enumerate(pbar): 
-            img = img.to(device)
-            lbl = lbl.to(device)
 
-            out = model(img)
+        with torch.no_grad(): 
 
-            loss = loss_fn(out, lbl)
+            for idx, (img, lbl) in enumerate(pbar): 
+                img = img.to(device)
+                lbl = lbl.to(device)
 
-            if is_logger: 
-                pbar.update(1)
+                out = model(img)
 
-                itr = e * len(train_dataloader) + idx
-                writer.add_scalar('Loss/validation', loss.item(), itr)
+                loss = loss_fn(out, lbl)
+
+                if is_logger: 
+                    pbar.set_postfix(loss=loss.item())
+
+                    itr = e * len(val_dataloader) + idx
+                    writer.add_scalar('Loss/validation', loss.item(), itr)

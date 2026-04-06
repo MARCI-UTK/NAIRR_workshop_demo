@@ -8,6 +8,7 @@ log_dir: runs/resnet101/
 data: 
   root: '/work/hdd/bfep/lewis1/chexpert'
   batch_size: 16
+  num_workers: 4
 
 # Optimization settings 
 optimization: 

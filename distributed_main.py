@@ -50,7 +50,7 @@ def main() -> None:
         print(f"Training with {world_size} processes")
 
     try:
-        train.train(local_rank, global_rank, world_size, is_logger, params)
+        distributed_train.train(local_rank, global_rank, world_size, is_logger, params)
     finally:
         cleanup_ddp()
 
