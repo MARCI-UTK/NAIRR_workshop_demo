@@ -23,6 +23,7 @@ def train(local_rank: int, global_rank: int, world_size: int,
     model_name = params['model_name']
     log_dir = params['log_dir']
     data_root = params['data']['root']
+    num_workers = params['data']['num_workers']
     batch_size = int(params['data']['batch_size'])
     num_epochs = int(params['optimization']['num_epochs'])
     learning_rate = float(params['optimization']['learning_rate'])
@@ -95,14 +96,14 @@ def train(local_rank: int, global_rank: int, world_size: int,
         dataset=train_dataset,
         batch_size=batch_size,
         sampler=sampler,
-        num_workers=4,
+        num_workers=num_workers,
         pin_memory=True,
     )
 
     val_dataloader = torch.utils.data.DataLoader(
         dataset=val_dataset, 
         batch_size=batch_size,
-        num_workers=4,
+        num_workers=num_workers,
         shuffle=False,
         pin_memory=True,
     )  
