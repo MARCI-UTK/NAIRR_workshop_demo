@@ -2,7 +2,7 @@
 model_name: 'resnet101.a1_in1k'
 
 # Directory where Tensorboard output goes 
-log_dir: runs/resnet101/
+log_dir: 'runs/resnet101/'
 
 # Data related parameters 
 data: 
