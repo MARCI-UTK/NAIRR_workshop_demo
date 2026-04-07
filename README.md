@@ -600,7 +600,13 @@ TensorBoard is a web-based visualization tool developed by Google for use with t
 
 There are 2 primary ways to view the plots of the data recorded by TensorBoard.
 - Using the TensorBoard plugin for VS Code to view the plots on Delta
-- Downloading the output files to your local machine and viewing them in a standard web-browser  
+- Downloading the output files to your local machine and viewing them in a standard web-browser
+
+#### Using TensorBoard with VS Code
+
+After installing the TensorBoard plugin for VS Code, navigate to a Python code file in VS Code in which TensorBoard is imported. The following link should appear in the code:
+
+<img width="740" height="76" alt="image" src="https://github.com/user-attachments/assets/af1cc65d-260f-4968-8ec5-419c3d64ae59" />
 
 ---
 
