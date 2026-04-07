@@ -594,6 +594,10 @@ Work through these exercises in order. Each builds on the previous one. After ea
 
 ---
 
+### Visualizing Training using Tensorboard 
+
+---
+
 ## ✅ What You Have Learned
 
 Congratulations — you have run a real distributed AI training job on a national supercomputer. Here is a summary of the key concepts from today's session:
