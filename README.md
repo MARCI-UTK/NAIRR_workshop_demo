@@ -608,6 +608,9 @@ After installing the TensorBoard plugin for VS Code, navigate to a Python code f
 
 <img width="740" height="76" alt="image" src="https://github.com/user-attachments/assets/af1cc65d-260f-4968-8ec5-419c3d64ae59" />
 
+Click on this link and the following options will appear:
+<img width="1206" height="366" alt="image" src="https://github.com/user-attachments/assets/234d9d1e-6a69-4af1-a25a-38985106eca8" />
+
 ---
 
 ## ✅ What You Have Learned
