@@ -614,7 +614,11 @@ Click on this link and the following options will appear:
 
 Choose `Select another folder` then navigate to the `runs/resnet101` directory.
 
-<img width="606" height="92" alt="image" src="https://github.com/user-attachments/assets/bc7d0e68-161c-4223-9141-78d1a52ad5ed" />
+<img width="606" height="92" alt="image" src="https://github.com/user-attachments/assets/bc7d0e68-161c-4223-9141-78d1a52ad5ed" /> <br/>
+
+Click `OK` and then the TensorBoard plots will load. 
+
+#### Using TensorBoard with Local Web Browser
 
 
 ---
