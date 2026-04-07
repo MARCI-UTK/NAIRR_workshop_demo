@@ -594,7 +594,13 @@ Work through these exercises in order. Each builds on the previous one. After ea
 
 ---
 
-### Visualizing Training using Tensorboard 
+## Visualizing Training using TensorBoard 
+
+TensorBoard is a web-based visualization tool developed by Google for use with the TensorFlow library, but it's now widely used with PyTorch as well. This software allows researchers to monitor and visualize various aspects of model training in real time, including loss curves, accuracy, learning rate schedules, and more. TensorBoard utilizes an object called a `SummaryWriter` to write specified data to an output file. TensorBoard reads this file and displays the data as interactive plots in a browser. This makes it much easier to spot issues like overfitting, diverging loss, or stalled training without having to parse raw log files.
+
+There are 2 primary ways to view the plots of the data recorded by TensorBoard.
+- Using the TensorBoard plugin for VS Code to view the plots on Delta
+- Downloading the output files to your local machine and viewing them in a standard web-browser  
 
 ---
 
