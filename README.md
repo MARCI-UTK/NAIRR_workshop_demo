@@ -653,6 +653,8 @@ Click `OK` and then the TensorBoard plots will load!
 
 <img width="735" height="420" alt="image" src="https://github.com/user-attachments/assets/07a58d4c-771d-4a78-b0ae-b56b81d99fe5" />
 
+Note that loading TensorBoard in VS Code when working on a remote machine like Delta can sometimes be buggy and slow, but it is a convenient feature. Downloading the TensorBoard files and viewing them locally as shown previously is always reliable. 
+
 ---
 
 ## ✅ What You Have Learned
