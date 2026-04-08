@@ -317,6 +317,8 @@ model.conv1 = torch.nn.Conv2d(1, 64, kernel_size=7, stride=2, padding=3, bias=Fa
 model.fc = torch.nn.Linear(model.fc.in_features, 14)
 ```
 
+The above changes have already been made in the code for this workshop (in `distributed_train.py`). 
+
 ### Distributed Training with PyTorch DDP
 
 When training across multiple GPUs, the workload is split using **Distributed Data Parallel (DDP)**:
