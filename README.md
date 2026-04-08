@@ -5,7 +5,7 @@
 <br/>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Python-3.11-blue?logo=python&logoColor=white" alt="Python 3.11"/>
+  <img src="https://img.shields.io/badge/Python-3.13-blue" alt="Python 3.13"/>
   <img src="https://img.shields.io/badge/PyTorch-2.x-EE4C2C?logo=pytorch&logoColor=white" alt="PyTorch"/>
   <img src="https://img.shields.io/badge/HPC-Delta%20(NCSA)-4B8BBE" alt="Delta HPC"/>
   <img src="https://img.shields.io/badge/NSF-NAIRR%20%7C%20ACCESS-005A9C" alt="NSF NAIRR ACCESS"/>
