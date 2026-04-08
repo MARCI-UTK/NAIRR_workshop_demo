@@ -58,7 +58,7 @@ By the end of this workshop you will be able to:
 
 ### The Task
 
-We will train **ResNet-101**, a deep convolutional neural network, on the **CheXpert** dataset — a large collection of over 224,000 chest X-rays labeled for 14 clinically significant conditions. This is a real-world medical AI workload that would take days on a single laptop GPU but completes in minutes on Delta.
+We will train **ResNet-101**, a deep convolutional neural network, on the **CheXpert** dataset — a large collection of over 224,000 chest X-rays labeled for 14 clinically significant conditions. This is a real-world medical AI workload that would take days on a single laptop GPU but completes in hours on Delta.
 
 | Detail | Value |
 |---|---|
