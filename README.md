@@ -238,7 +238,7 @@ Delta ships with Python 3.9 by default, which is too old for our dependencies. L
 
 ```bash
 module load python
-python --version   # Should show Python 3.11.x
+python --version   # Should show Python 3.13.x
 ```
 
 > The `module` system is how HPC clusters manage software versions. `module load python` makes a newer Python available in your session.
