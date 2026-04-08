@@ -91,14 +91,14 @@ HPC systems solve this by providing **clusters of hundreds or thousands of GPUs*
 
 ```
 Your Laptop          HPC Cluster (Delta)
-┌──────────┐         ┌───────────────────────────────────────┐
+┌──────────┐         ┌──────────────────┐
 │ 1 GPU    │   vs.   │ Node 1: 4× A40   |
-| ~24 GB   |         | Node 2: 4× A40   │
+| ~8  GB   |         | Node 2: 4× A40   │
 │          │         │ Node 3: 4× A40...|
 |          |         | Node N: 4× A40   │
-│ 1 user   │         │ Hundreds of GPUs| 
-|          |         |— shared resource │
-└──────────┘         |                  | └───────────────────────────────────────┘
+│ 1 user   │         │ Hundreds of GPUs | 
+|          |         | Shared resources │
+└──────────┘         └──────────────────┘              
 ```
 
 ### What is NAIRR?
