@@ -622,6 +622,26 @@ Click `OK` and then the TensorBoard plots will load.
 
 #### Using TensorBoard with Local Web Browser
 
+VS Code integration with TensorBoard can be buggy and slow when working on remote machines like Delta. As an alternative, the TensorBoard output files can be downloaded from Delta to your local machine (laptop or desktop) and viewed in a normal web browser. This requires your local machine to have Python 3.9+ installed. To begin, open your terminal. 
+
+First, we need to create a virtual envrionment in order to install the TensorBoard package. Run the following commands to create a new directory and move into it, then create a virtual environment and activate it. 
+
+```bash
+mkdir tensorboard
+cd tensorboard
+python -m venv venv
+source venv/bin/activate
+```
+
+Once the virtual environment is activated, run `pip install tensorboard` to install the TensorBoard package. If the above commands did not work, try running `python3 -m venv venv`. The next step is to download the TensorBoard output from Delta to our local machine. To do this, run the following command then enter your password for Delta and complete the 2 factor authentication process.  
+
+```bash
+scp -r [your_delta_username]@login.delta.ncsa.illinois.edu:~/NAIRR_workshop_demo/runs .
+```
+
+This will copy the `runs` directory from Delta to your local machine. Now run `tensorboard --logdir=runs --port=6006` to start a TensorBoard session and point it to the data we want to view. Finally, open a web-browser of your choice and navigate to `https://localhost:6006`. The TensorBoard output will be displayed here! 
+
+<img width="715" height="383" alt="image" src="https://github.com/user-attachments/assets/74aaeb1a-bd1a-4233-bd32-6ac664509d1b" />
 
 ---
 
