@@ -633,9 +633,13 @@ Note that these TensorBoard files can be downloaded from any machine that you ma
 
 #### Using TensorBoard with VS Code
 
-After installing the TensorBoard plugin for VS Code, navigate to a Python code file in VS Code in which TensorBoard is imported. The following link should appear in the code:
+To use TensorBoard with VS Code, the first step is to install the TensorBoard plugin in VS Code. Navigate to the extensions tab of VS Code, search for TensorBoard, then click `Install` after selecting the package. 
 
-<img width="740" height="76" alt="image" src="https://github.com/user-attachments/assets/af1cc65d-260f-4968-8ec5-419c3d64ae59" /> <br/>
+<img width="735" height="418" alt="image" src="https://github.com/user-attachments/assets/0af5cdb1-1be3-4736-992e-deec7618aa7f" />
+
+After installing the TensorBoard plugin, navigate to this repository in VS Code then open `distributed_train.py` The following link should appear in the code near the top of the file:
+
+<img width="735" height="416" alt="image" src="https://github.com/user-attachments/assets/735e1d74-03fc-4e2f-95e8-073375086f9b" />
 
 Click on this link and the following options will appear:
 
