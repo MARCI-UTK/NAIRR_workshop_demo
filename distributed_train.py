@@ -11,10 +11,32 @@ from torch.nn.parallel import DistributedDataParallel as DDP
 import chexpert_dataset
 
 """
-Training run on GPU process 
+Training run for a single GPU process 
 """
 def train(local_rank: int, global_rank: int, world_size: int, 
           is_logger: bool, params: dict) -> None: 
+    
+    """
+    Model training routine.
+
+    Parameters
+    ----------
+    local_rank : int
+        GPU ID on the local node
+    global_rank : int
+        GPU ID in the overall training process 
+    world_size: int 
+        Total number of GPUs being used by the training process 
+    is_logger : bool
+        When True, enables Tensorboard logs and progress bar.
+    params : dict
+        Configuration of training session.
+
+    Returns
+    -------
+    None
+        No return value.
+    """
 
     # Specify GPU 
     device = f'cuda:{local_rank}'

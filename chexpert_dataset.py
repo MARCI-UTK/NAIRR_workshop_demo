@@ -17,6 +17,27 @@ class CheXpertDataset(torch.utils.data.Dataset):
             uncertainty: str = 'zeros'
         ) -> None:
 
+        """
+        Initialize a CheXpert dataset object. 
+
+        Parameters
+        ----------
+        root : str
+            The root directory of the CheXpert dataset
+        split : str
+            Whether this object is loading the training or validation split of CheXpert 
+            Accepts 'train' or 'valid
+        transform: v2.Compose or None 
+            The set of augmentations applied to each sample 
+        uncertainty : str
+            Specifies how to handle the 'uncertainty' labels in CheXpert 
+
+        Returns
+        -------
+        None
+            No return value.
+        """
+
         self.root = root
 
         # Loads the CSV file that contains image paths along 
