@@ -223,7 +223,7 @@ Delta organizes storage into three tiers with different performance characterist
 
 | Resource | Path |
 |---|---|
-| CheXpert dataset | `/work/hdd/bfep/lewis1/` |
+| CheXpert dataset | `/work/hdd/bfep/lewis1/chexpert` |
 | Your home directory | `~` (`/u/[your_username]`) |
 
 > **Note:** Storage on Delta is not permanent. Data in `/work/` is subject to purge policies. Always keep a copy of important data elsewhere.
