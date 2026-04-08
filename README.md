@@ -601,8 +601,35 @@ Work through these exercises in order. Each builds on the previous one. After ea
 TensorBoard is a web-based visualization tool developed by Google for use with the TensorFlow library, but it's now widely used with PyTorch as well. This software allows researchers to monitor and visualize various aspects of model training in real time, including loss curves, accuracy, learning rate schedules, and more. TensorBoard utilizes an object called a `SummaryWriter` to write specified data to an output file. TensorBoard reads this file and displays the data as interactive plots in a browser. This makes it much easier to spot issues like overfitting, diverging loss, or stalled training without having to parse raw log files.
 
 There are 2 primary ways to view the plots of the data recorded by TensorBoard.
-- Using the TensorBoard plugin for VS Code to view the plots on Delta
 - Downloading the output files to your local machine and viewing them in a standard web-browser
+- Using the TensorBoard plugin for VS Code to view the plots on Delta
+
+#### Using TensorBoard with Local Web Browser
+
+TensorBoard output files can be downloaded from Delta to your local machine (laptop or desktop) and viewed in a normal web browser. This process requires minimal setup and allows you to compare model training details regardless of the machine that the model is trained on. This requires your local machine to have Python 3.9+ installed. To begin, open your terminal. 
+
+First, we need to create a virtual envrionment in order to install the TensorBoard package. Run the following commands to create a new directory and move into it, then create a virtual environment and activate it. 
+
+```bash
+mkdir tensorboard
+cd tensorboard
+python -m venv venv
+source venv/bin/activate
+```
+
+This setup only needs to be done one time!
+
+Once the virtual environment is activated, run `pip install tensorboard` to install the TensorBoard package. If the above commands did not work, try running `python3 -m venv venv`. The next step is to download the TensorBoard output from Delta to our local machine. To do this, run the following command then enter your password for Delta and complete the 2 factor authentication process.  
+
+```bash
+scp -r [your_delta_username]@login.delta.ncsa.illinois.edu:~/NAIRR_workshop_demo/runs .
+```
+
+This will copy the `runs` directory from Delta to your local machine. Now run `tensorboard --logdir=runs --port=6006` to start a TensorBoard session and point it to the data we want to view. Finally, open a web-browser of your choice and navigate to `https://localhost:6006`. The TensorBoard output will be displayed here! 
+
+<img width="715" height="383" alt="image" src="https://github.com/user-attachments/assets/74aaeb1a-bd1a-4233-bd32-6ac664509d1b" />
+
+Note that these TensorBoard files can be downloaded from any machine that you may train a model on, not just Delta! The only thing that changes is the file location given to the `scp` command. 
 
 #### Using TensorBoard with VS Code
 
@@ -619,29 +646,6 @@ Choose `Select another folder` then navigate to the `runs/resnet101` directory.
 <img width="606" height="92" alt="image" src="https://github.com/user-attachments/assets/bc7d0e68-161c-4223-9141-78d1a52ad5ed" /> <br/>
 
 Click `OK` and then the TensorBoard plots will load. 
-
-#### Using TensorBoard with Local Web Browser
-
-VS Code integration with TensorBoard can be buggy and slow when working on remote machines like Delta. As an alternative, the TensorBoard output files can be downloaded from Delta to your local machine (laptop or desktop) and viewed in a normal web browser. This requires your local machine to have Python 3.9+ installed. To begin, open your terminal. 
-
-First, we need to create a virtual envrionment in order to install the TensorBoard package. Run the following commands to create a new directory and move into it, then create a virtual environment and activate it. 
-
-```bash
-mkdir tensorboard
-cd tensorboard
-python -m venv venv
-source venv/bin/activate
-```
-
-Once the virtual environment is activated, run `pip install tensorboard` to install the TensorBoard package. If the above commands did not work, try running `python3 -m venv venv`. The next step is to download the TensorBoard output from Delta to our local machine. To do this, run the following command then enter your password for Delta and complete the 2 factor authentication process.  
-
-```bash
-scp -r [your_delta_username]@login.delta.ncsa.illinois.edu:~/NAIRR_workshop_demo/runs .
-```
-
-This will copy the `runs` directory from Delta to your local machine. Now run `tensorboard --logdir=runs --port=6006` to start a TensorBoard session and point it to the data we want to view. Finally, open a web-browser of your choice and navigate to `https://localhost:6006`. The TensorBoard output will be displayed here! 
-
-<img width="715" height="383" alt="image" src="https://github.com/user-attachments/assets/74aaeb1a-bd1a-4233-bd32-6ac664509d1b" />
 
 ---
 
