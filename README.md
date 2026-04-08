@@ -645,11 +645,13 @@ Click on this link and the following options will appear:
 
 <img width="603" height="183" alt="image" src="https://github.com/user-attachments/assets/234d9d1e-6a69-4af1-a25a-38985106eca8" /> <br/>
 
-Choose `Select another folder` then navigate to the `runs/resnet101` directory.
+Choose `Select another folder` then navigate to the `runs/` directory.
 
-<img width="606" height="92" alt="image" src="https://github.com/user-attachments/assets/bc7d0e68-161c-4223-9141-78d1a52ad5ed" /> <br/>
+<img width="605" height="116" alt="image" src="https://github.com/user-attachments/assets/2014f96e-b2b0-4cc3-b6fd-63aa4141a438" />
 
-Click `OK` and then the TensorBoard plots will load. 
+Click `OK` and then the TensorBoard plots will load!
+
+<img width="735" height="420" alt="image" src="https://github.com/user-attachments/assets/07a58d4c-771d-4a78-b0ae-b56b81d99fe5" />
 
 ---
 
