@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --[account_id]      # <- This is our ACCESS account 
+#SBATCH --[account_id]                # <- This is our ACCESS account 
 #SBATCH --partition=gpuA40x4          # <- This is the type of node we would like to use 
 #SBATCH --job-name=chexpert_train     # <- The name of our job 
 #SBATCH --nodes=2                     # <- The number of nodes we want 
@@ -16,8 +16,6 @@ module load python
 
 # Load virtual environment containing required packages 
 source /projects/bfep/lewis1/venv/bin/activate
-
-export NCCL_DEBUG=INFO
 
 # Determine the IP of the control node for SLURM process 
 MASTER_ADDR=$(scontrol show hostnames "$SLURM_JOB_NODELIST" | head -n 1)
