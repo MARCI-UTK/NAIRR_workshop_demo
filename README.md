@@ -666,7 +666,7 @@ state_dict = torch.load('chkpt.pt')
 model.load_state_dict(state_dict)
 ```
 
-In the distributed_train.py file, this code snipped would go immediately after line 66. 
+In the `distributed_train.py` file, this code snipped would go immediately after line 66. 
 
 ---
 
