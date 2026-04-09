@@ -352,7 +352,7 @@ log_dir: runs/resnet101/
 
 # Data related parameters
 data:
-  root: '/work/hdd/bfep/lewis1'   # <-- Update this to your username
+  root: '/work/hdd/bfep/lewis1/chexpert'
   batch_size: 16
 
 # Optimization settings
