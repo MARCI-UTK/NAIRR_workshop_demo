@@ -1,9 +1,7 @@
 import os 
 import tqdm
 import timm 
-import yaml
 import torch
-import argparse
 from torchvision.transforms import v2 
 from torch.utils.tensorboard import SummaryWriter 
 from torch.nn.parallel import DistributedDataParallel as DDP
@@ -193,3 +191,7 @@ def train(local_rank: int, global_rank: int, world_size: int,
 
                     itr = e * len(val_dataloader) + idx
                     writer.add_scalar('Loss/validation', loss.item(), itr)
+        
+        # Save the model weights at the end of training 
+        if e == (num_epochs - 1): 
+            torch.save(model.module.state_dict(), 'chkpt.pt')
