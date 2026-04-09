@@ -657,6 +657,19 @@ Note that loading TensorBoard in VS Code when working on a remote machine like D
 
 ---
 
+## Loading Model Parameters from Previous Training
+
+Often a model will be trained on a large number of GPUs, and then these learned weights are stored and used later in some application. The code used in this workshop outputs the trained model weights after training completes into a file called `chkpt.pt`. The weights stored in this file can be loaded into a new ResNet-101 model and be used later. Loading these weights is a very simple process that is done right after the model is initialized. 
+
+```python3
+state_dict = torch.load('chkpt.pt')
+model.load_state_dict(state_dict)
+```
+
+In the distributed_train.py file, this code snipped would go immediately after line 66. 
+
+---
+
 ## ✅ What You Have Learned
 
 Congratulations — you have run a real distributed AI training job on a national supercomputer. Here is a summary of the key concepts from today's session:
