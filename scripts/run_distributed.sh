@@ -1,8 +1,8 @@
 #!/bin/bash
-#SBATCH --[account_id]                # <- This is our ACCESS account 
+#SBATCH --[account_id]                # <- This is our ACCESS account
 #SBATCH --partition=gpuA40x4          # <- This is the type of node we would like to use 
 #SBATCH --job-name=chexpert_train     # <- The name of our job 
-#SBATCH --nodes=2                     # <- The number of nodes we want 
+#SBATCH --nodes=1                     # <- The number of nodes we want 
 #SBATCH --ntasks-per-node=1           # <- We want to run 1 process per node (PyTorch controls the subprocesses on each node)
 #SBATCH --gpus-per-node=4             # <- How many GPUs we want per node 
 #SBATCH --cpus-per-task=32            # <- How many CPUs we want per node (DataLoader num_workers * gpus_per_node is rule of thumb)
